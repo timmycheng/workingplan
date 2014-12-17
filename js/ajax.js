@@ -26,18 +26,75 @@ function getFormJson (frm) {
 	return o;
 }
 
-$(document).ready(function(){
-	// $('#login_form').bind('submit',function(){
-	// 	ajaxSubmit(this,function(data){
-			
-	// 	});
-	// 	return false;
-	// });
+function getList(){
+	$.ajax({
+		url:'source/list.php',
+		type:'POST',
+		success:function(data){
+			// alert(data);
+			$('#entry_list').html(data);
+		}
+	});
+}
 
-	// $('#logout_form').bind('submit',function(){
-	// 	ajaxSubmit(this,function(data){
+$(document).ready(function(){
+	$(document).on('submit','#login_form',function(){
+		var user = $("#usrname").val(); 
+		var pass = $("#pasword").val(); 
+		if (user==""||pass=="") {
+			alert('请输入用户名和密码!');
+		}else{
+			ajaxSubmit(this,function(data){
+				if (data!="error"){
+					var div_log=
+					"<div id='logout'>"+
+						"<form action='source/login.php' method='post' id='logout_form'>"+
+							"<label>用户名：</label><p>"+data+"</p>"+
+							"<input type='submit' value='注销'>"+
+						"</form>"+
+						"<form action='source/add_entry.php' method='post' id='add_form'>"+
+							"<input type='text' name='ename' id='ename'>"+
+							"<textarea name='econtent' id='econtent' cols='30' rows='10'></textarea>"+
+							"<input type='timepicker' name='ebdate' id='ebdate'>"+
+							"<input type='submit' value='保存'>"+
+						"</form>"+
+					"</div>";
+					$('#login').remove();
+					$('#logio').append(div_log);
+				}else{
+					alert('用户名或密码错误!');
+				}
+			});
 			
-	// 	});
-	// 	return false;
-	// });
+		}
+		getList();
+		return false;
+	});
+
+	$(document).on('submit','#logout_form',function(){
+		ajaxSubmit(this,function(data){
+			var div_log=
+			"<div id='login'>"+
+				"<form action='source/login.php' method='post' id='login_form'>"+
+					"<input type='text' name='usrname' id='usrname'>"+
+					"<input type='password' name='pasword' id='pasword'>"+
+					"<input type='submit' value='登陆'>"+
+				"</form>"+
+			"</div>";
+			$('#logout').remove();
+			$('#logio').append(div_log);
+		});
+		getList();
+		return false;
+	});
+	
+	$(document).on('submit','#add_form',function(){
+		ajaxSubmit(this,function(data){
+			getList();
+		});
+		return false;
+	});
+
+	getList();
 });
+
