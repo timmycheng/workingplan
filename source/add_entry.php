@@ -11,14 +11,21 @@ db_connect();
 
 $year=date('Y');
 $week=date('W');
-$id=$year."-".$week;
 
+$id=$year."-".$week;
 $date=date('Y-m-d');
 
-$sql="insert into pro2_work_plan_entries values ('$id','$name',0,'$content',$dat,$date,'$respons',null)";
+$sql_ord="select IfNULL(max(incr_id),0) incr_id from pro2_work_plan_entries where id='$id'";
 
-$num=mysql_query($sql);
 
-echo $num;
+$num_ret=mysql_query($sql_ord);
+$num_arr=mysql_fetch_array($num_ret);
+$count=$num_arr['incr_id']+1;
+
+
+$sql="insert into pro2_work_plan_entries values ('$id','$name',0,'$content',$dat,$date,'$respons',$count,null)";
+$ret=mysql_query($sql);
+
+;
 
 ?>

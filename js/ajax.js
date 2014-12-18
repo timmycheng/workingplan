@@ -26,9 +26,9 @@ function getFormJson (frm) {
 	return o;
 }
 
-function getList(){
+function getList(action){
 	$.ajax({
-		url:'source/list.php',
+		url:'source/list.php?action='+action,
 		type:'POST',
 		success:function(data){
 			// alert(data);
@@ -36,6 +36,7 @@ function getList(){
 		}
 	});
 }
+
 
 $(document).ready(function(){
 	$(document).on('submit','#login_form',function(){
@@ -67,7 +68,7 @@ $(document).ready(function(){
 			});
 			
 		}
-		getList();
+		getList('all');
 		return false;
 	});
 
@@ -84,17 +85,37 @@ $(document).ready(function(){
 			$('#logout').remove();
 			$('#logio').append(div_log);
 		});
-		getList();
+		getList('all');
 		return false;
 	});
-	
+
 	$(document).on('submit','#add_form',function(){
+	// $('#add_form').on('submit',function(){
 		ajaxSubmit(this,function(data){
-			getList();
+			getList('all');
 		});
 		return false;
 	});
 
-	getList();
+	$(document).on('click','#entry',function(e){
+		e.preventDefault();
+		// alert(data.id);
+		// alert(this.href);
+		// $('#entry_item').dialog({autoOpen: false}).dialog('open');
+		// $('#entry_item').modal();
+		// $('#entry_item')
+		// $('#showdetailbtn').click();
+		$.ajax({
+		url:this.href,
+		type:'POST',
+		success:function(data){
+			alert(data);
+			// $('#entry_list').html(data);
+			
+		}
+	});
+	});
+
+	getList('all');
 });
 
