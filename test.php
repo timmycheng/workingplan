@@ -13,6 +13,8 @@
         <script src="js/ajax.js"></script>
     </head>
     <body>
+
+      <!-- 点击弹出modal框 -->
     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
           Launch demo modal
         </button>
@@ -36,6 +38,50 @@
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
         <!-- </div> -->
+        <!-- 点击弹出modal框-结束 -->
+
+        
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>aaaaaaa</th>
+              <th>bbbbbbb</th>
+              <th>ccccccc</th>
+              <th>ddddddd</th>
+              <th>eeeeeee</th>
+            </tr>
+          </thead>
+          <tr>
+            <td>a</td>
+            <td>b</td>
+            <td>c</td>
+            <td>d</td>
+            <td><a href="#one" data-toggle='collapse' data-target='#content'>e</a></td>
+          </tr>
+              <div class="collapse" id="content">
+          <tr>
+            <td colspan="5">
+                asdfjalkdfj;alkdjfalk;jf;lkajd;alkf
+            </td>
+          </tr>
+              </div>
+          <tr>
+            <td>a</td>
+            <td>b</td>
+            <td>c</td>
+            <td>d</td>
+            <td><a href="#one" data-toggle='collapse' data-target='#content'>e</a></td>
+          </tr>
+          <tr>
+            <td>a</td>
+            <td>b</td>
+            <td>c</td>
+            <td>d</td>
+            <td><a href="#one" data-toggle='collapse' data-target='#content'>e</a></td>
+          </tr>
+        </table>
+
+        
 
 
     </body>
