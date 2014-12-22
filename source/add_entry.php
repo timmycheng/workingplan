@@ -23,7 +23,7 @@ $num_arr=mysql_fetch_array($num_ret);
 $count=$num_arr['incr_id']+1;
 
 
-$sql="insert into pro2_work_plan_entries values ('$id','$name',0,'$content',$dat,$date,'$respons',$count,null)";
+$sql="insert into pro2_work_plan_entries values ('$id','$name',0,'$content',$dat,$date,null,'$respons',$count,null)";
 $ret=mysql_query($sql);
 
 ;

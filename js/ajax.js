@@ -158,6 +158,7 @@ $(document).ready(function(){
 	// $('#add_form').on('submit',function(){
 		ajaxSubmit(this,function(data){
 			getList('all');
+			this[0].reset();
 		});
 		return false;
 	});

@@ -16,18 +16,20 @@ if ($action=="all") {
 	$id=date('Y-').$week;
 
 	
-	//SQL 不对
+	//已改
 	$sql="
 	select 
 	concat(substr(id,6),'-',incr_id) `id`,
-	case when `status`=0 and id='$id' then 'open' when `status`=1 then 'close' else then 'close' end status,
+	case when `status`<>1 and substr(id, 6)=$week then 'open' 
+		 when `status`<>1 and substr(id, 6)<$week then 'going' 
+		 when `status`=1 and substr(id, 6)=$week then 'close' end status,
 	`name`,
 	`deadline`,
 	`content`,
 	`respons`,
 	e_id
 	from pro2_work_plan_entries
-	where (id='$id' or status=1)
+	having status is not null
 	";
 
 	if (isset($_SESSION['usrname'])) {
@@ -100,7 +102,9 @@ if ($action=="all") {
 	`name`,
 	`deadline`,
 	`content`,
-	`respons`
+	`respons`,
+	createtime,
+	closetime
 	from pro2_work_plan_entries
 	where e_id=$e
 	";
