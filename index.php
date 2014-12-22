@@ -14,11 +14,14 @@ error_reporting(7);
             <script src="js/respond.js"></script>
         ![end if] -->
         <!-- Bootstrap -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
         <!-- Javascript -->
         <script src="js/jquery-1.11.2.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>        
+        <script src="js/bootstrap-datetimepicker.min.js"></script>
         <script src="js/ajax.js"></script>
+
     </head>
     <body>
         <div class="container-fluid">
@@ -87,7 +90,7 @@ error_reporting(7);
                                 <div class="form-group">
                                     <label for="ebdate" class='col-sm-2 control-label'>日期：</label>
                                     <div class="col-sm-10">
-                                        <input type='date' name='ebdate' id='ebdate' class='form-control'>
+                                        <input type='text' name='ebdate' id='ebdate' class='form-control'>
                                     </div>
                                 </div>
                                 <div class="form-group">

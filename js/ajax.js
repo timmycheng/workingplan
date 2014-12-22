@@ -91,7 +91,7 @@ $(document).ready(function(){
 					"            <div class='form-group'>"+
 					"                <label for='ebdate' class='col-sm-2 control-label'>日期：</label>"+
 					"                <div class='col-sm-10'>"+
-					"                    <input type='date' name='ebdate' id='ebdate' class='form-control'>"+
+					"                    <input type='text' name='ebdate' id='ebdate' class='form-control'>"+
 					"                </div>"+
 					"            </div>"+
 					"            <div class='form-group'>"+
@@ -158,7 +158,8 @@ $(document).ready(function(){
 	// $('#add_form').on('submit',function(){
 		ajaxSubmit(this,function(data){
 			getList('all');
-			this[0].reset();
+			// alert(data);
+			$('#add_form')[0].reset();
 		});
 		return false;
 	});
@@ -189,6 +190,11 @@ $(document).ready(function(){
 			}
 		});
 	});
+
+	$('#add_form').on('load','#ebdate',function(event){
+		alert('load ebdate');
+	});
+
 	getList('all',$('#entry_list'));
 });
 
