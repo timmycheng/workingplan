@@ -22,14 +22,14 @@ if ($action=="all") {
 	concat(substr(id,6),'-',incr_id) `id`,
 	case when `status`<>1 and substr(id, 6)=$week then 'open' 
 		 when `status`<>1 and substr(id, 6)<$week then 'going' 
-		 when `status`=1 and substr(id, 6)=$week then 'close' end status,
+		 when `status`=1 and substr(id, 6)=$week then 'close' end st,
 	`name`,
 	`deadline`,
 	`content`,
 	`respons`,
 	e_id
 	from pro2_work_plan_entries
-	having status is not null
+	having st is not null
 	";
 
 	if (isset($_SESSION['usrname'])) {
@@ -39,7 +39,7 @@ if ($action=="all") {
 
 	$ret=mysql_query($sql);
 
-	echo "<table class='table table-striped table-hover'>";
+	echo "<table class='table table-hover'>";
 	echo 	"<tr>";
 	echo 		"<th>";
 	echo 		"排序";
@@ -61,12 +61,20 @@ if ($action=="all") {
 	echo 		"</th>";
 	echo 	"</tr>";
 	while ($row=mysql_fetch_array($ret)) {
-		echo "<tr>";
+		// echo "<tr>";
+		if ($row['st']=='close') {
+			echo "<tr class='success'>";
+		} elseif($row['deadline']<date('Y-m-d')) {
+			echo "<tr class='danger'>";	
+		}else{
+			echo "<tr>";
+		}
+		
 		echo "<td>";
 		echo $row['id'];
 		echo "</td>";
 		echo "<td>";	
-		echo $row['status'];
+		echo $row['st'];
 		echo "</td>";
 		echo "<td>";
 		echo $row['deadline'];
@@ -87,7 +95,7 @@ if ($action=="all") {
 
 	echo '<nav>';
 	echo '  <ul class="pager">';
-	echo '    <li class="previous"><a class="nav-self" href="source/list.php?action=all&e='.($week==0?54:$week-1).'">&larr; '.($week==0?54:$week-1).'周</a></li>';
+	echo '    <li class="previous"><a class="nav-self" href="source/list.php?action=all&e='.($week==1?54:$week-1).'">&larr; '.($week==1?54:$week-1).'周</a></li>';
 	echo '	  <li>第'.$week.'周</li>';
 	echo '    <li class="next"><a class="nav-self" href="source/list.php?action=all&e='.($week==54?1:$week+1).'">'.($week==54?1:$week+1).'周 &rarr;</a></li>';
 	echo '  </ul>';
@@ -98,13 +106,14 @@ if ($action=="all") {
 	$sql="
 	select 
 	concat(substr(id,6),'-',incr_id) id,
-	case when `status`=0 then 'open' when `status`=1 then 'going' when `status`=2 then 'close' end status,
+	status,
 	`name`,
 	`deadline`,
 	`content`,
 	`respons`,
 	createtime,
-	closetime
+	closetime,
+	e_id
 	from pro2_work_plan_entries
 	where e_id=$e
 	";

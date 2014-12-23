@@ -20,6 +20,8 @@ error_reporting(7);
         <script src="js/jquery-1.11.2.min.js"></script>
         <script src="js/bootstrap.min.js"></script>        
         <script src="js/bootstrap-datetimepicker.min.js"></script>
+        <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+        <script src="js/modal.js"></script>
         <script src="js/ajax.js"></script>
 
     </head>
@@ -36,7 +38,7 @@ error_reporting(7);
                         ?>
                         <div id="login">
                             <form action='source/login.php' method='post' id='login_form' class='form-inline'>
-                                <div class="form-group">
+                                <div class="input-group">
                                     <label for="usrname" class='sr-only'>用户名</label>
                                     <input type='text' name='usrname' id='usrname' class='form-control input-sm' placeholder='用户名'>
                                 </div>
@@ -59,7 +61,7 @@ error_reporting(7);
                                     <p class='form-control-static'> <?php echo $_SESSION['usrname']?> </p>
                                 </div>
                                 <div class="form-group">
-                                    <input type='submit' class='btn btn-primary btn-sm' value='注销'>
+                                    <input type='submit' class='btn btn-primary btn-xs' value='注销'>
                                 </div>
                             </form>
                         </div>
@@ -82,21 +84,21 @@ error_reporting(7);
                     <div class="col-md-4" id='add_f'>
                             <form action='source/add_entry.php' method='post' id='add_form' class='form-horizontal'>
                                 <div class="form-group">
-                                    <label for="ename" class='col-sm-2 control-label'>标题：</label>
-                                    <div class="col-sm-10">
+                                    <label for="ename" class='col-sm-3 control-label'>标题：</label>
+                                    <div class="col-sm-9">
                                         <input type='text' name='ename' id='ename' class='form-control'>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="ebdate" class='col-sm-2 control-label'>日期：</label>
-                                    <div class="col-sm-10">
+                                    <label for="ebdate" class='col-sm-3 control-label'>完成标识：</label>
+                                    <div class="col-sm-9">
                                         <input type='text' name='ebdate' id='ebdate' class='form-control'>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="econtent" class='col-sm-2 control-label'>内容：</label>
-                                    <div class="col-sm-10">
-                                        <textarea name='econtent' id='econtent' rows='3' class='form-control'></textarea>
+                                    <label for="econtent" class='col-sm-3 control-label'>内容：</label>
+                                    <div class="col-sm-9">
+                                        <textarea name='econtent' id='econtent' rows='5' class='form-control'></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -136,9 +138,9 @@ error_reporting(7);
 
 
     <!-- 弹出窗口 -->
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="display:none;" id="showdetailbtn">
+    <!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="display:none;" id="showdetailbtn">
       Launch modal
-    </button>
+    </button> -->
 
     <!-- <div id="entry_item" style="display:none;"> -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -149,11 +151,19 @@ error_reporting(7);
                 <h4 class="modal-title">Modal title</h4>
               </div>
               <div class="modal-body">
-                <p>One fine body&hellip;</p>
+                  <div class="row">
+                    <div class="col-md-4">完成状态：</div>
+                    <div class="col-md-8" id="status">未完成</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">内容：</div>
+                    <div class="col-md-8" id="content">xxxxxxxxxxxxxxxxxxxx</div>
+                  </div>
               </div>
               <div class="modal-footer">
+                <div class="info" style='display:none;'></div>
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-primary" id="confirm">计划完成</button>
               </div>
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->

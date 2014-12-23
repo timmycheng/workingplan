@@ -83,21 +83,21 @@ $(document).ready(function(){
 					"<div class='col-md-4' id='add_f'>"+
 					"        <form action='source/add_entry.php' method='post' id='add_form' class='form-horizontal'>"+
 					"            <div class='form-group'>"+
-					"                <label for='ename' class='col-sm-2 control-label'>标题：</label>"+
-					"                <div class='col-sm-10'>"+
+					"                <label for='ename' class='col-sm-3 control-label'>标题：</label>"+
+					"                <div class='col-sm-9'>"+
 					"                    <input type='text' name='ename' id='ename' class='form-control'>"+
 					"                </div>"+
 					"            </div>"+
 					"            <div class='form-group'>"+
-					"                <label for='ebdate' class='col-sm-2 control-label'>日期：</label>"+
-					"                <div class='col-sm-10'>"+
+					"                <label for='ebdate' class='col-sm-3 control-label'>完成标识：</label>"+
+					"                <div class='col-sm-9'>"+
 					"                    <input type='text' name='ebdate' id='ebdate' class='form-control'>"+
 					"                </div>"+
 					"            </div>"+
 					"            <div class='form-group'>"+
-					"                <label for='econtent' class='col-sm-2 control-label'>内容：</label>"+
-					"                <div class='col-sm-10'>"+
-					"                    <textarea name='econtent' id='econtent' rows='3' class='form-control'></textarea>"+
+					"                <label for='econtent' class='col-sm-3 control-label'>内容：</label>"+
+					"                <div class='col-sm-9'>"+
+					"                    <textarea name='econtent' id='econtent' rows='5' class='form-control'></textarea>"+
 					"                </div>"+
 					"            </div>"+
 					"            <div class='form-group'>"+
@@ -114,6 +114,16 @@ $(document).ready(function(){
 					$('#add_div').append(div_add);
 					// alert(data);
 					getList('all');
+					$('#ebdate').datetimepicker({
+								language:'zh-CN',
+								format:'yyyy-mm-dd',
+								autoclose: 1,
+								todayBtn:1,
+								startView:2,
+								minView:2,
+								todayHighlight: 1,
+								forceParse: 0
+					});
 
 				}else{
 					alert('用户名或密码错误!');
@@ -155,12 +165,19 @@ $(document).ready(function(){
 	
 	//添加条目按钮绑定
 	$(document).on('submit','#add_form',function(){
-	// $('#add_form').on('submit',function(){
-		ajaxSubmit(this,function(data){
-			getList('all');
-			// alert(data);
-			$('#add_form')[0].reset();
-		});
+		var e_name = $('#ename').val();
+		var e_date = $('#ebdate').val();
+		var e_cont = $('#econtent').val();
+
+		if (e_name=="" || e_date=="" || e_cont=="") {
+			alert("请输入完整！");
+		} else{
+			ajaxSubmit(this,function(data){
+				getList('all');
+				// alert(data);
+				$('#add_form')[0].reset();
+			});
+		};
 		return false;
 	});
 
@@ -174,8 +191,20 @@ $(document).ready(function(){
 		success:function(data){
 			var o = jQuery.parseJSON(data);
 			$('.modal-title').html(o.name);
-			$('.modal-body').html(o.content);
-			$('#showdetailbtn').click();
+
+			var div="";
+			if(o.status=='1'){
+				$('#status').html("完成");
+				$('#confirm').hide();
+			}else{
+				$('#status').html("未完成");
+				$('#confirm').show();
+			}
+			
+			$('#content').html(o.content);
+			$('.info').val(o.e_id);
+			// $('#showdetailbtn').click();
+			$('#myModal').modal({backdrop:'static'});
 		}
 		});
 	});
@@ -191,10 +220,35 @@ $(document).ready(function(){
 		});
 	});
 
-	$('#add_form').on('load','#ebdate',function(event){
-		alert('load ebdate');
-	});
+	if ($('#ebdate')) {
+		$('#ebdate').datetimepicker({
+			language:'zh-CN',
+			format:'yyyy-mm-dd',
+			autoclose: 1,
+			todayBtn:1,
+			startView:2,
+			minView:2,
+			todayHighlight: 1,
+			forceParse: 0
+		});
+	};
 
+	$('#confirm').click(function(event) {
+		if(confirm('该计划完成？')){
+			// alert($('.info').val());
+			var i=$('.info').val();
+			$.ajax({
+				url:'source/update.php',
+				type:'POST',
+				data:{id:i},
+				success:function(data){
+					alert(data);
+					$('#myModal').modal('toggle');
+					getList('all');
+				}
+			});
+		}
+	});
 	getList('all',$('#entry_list'));
 });
 
