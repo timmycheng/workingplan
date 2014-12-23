@@ -4,10 +4,11 @@ $id=$_POST['id'];
 
 include 'db_connect.php';
 db_connect();
+$date=date('Y-m-d');
 $sql="";
 if (isset($_SESSION['usrname'])) {
 	if (isset($id)) {
-		$sql="update pro2_work_plan_entries set status=1 where e_id=$id";
+		$sql="update pro2_work_plan_entries set status=1,closetime='$date' where e_id=$id";
 	}
 
 	$ret= mysql_query($sql)?'成功':'失败';

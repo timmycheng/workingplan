@@ -16,13 +16,16 @@ if ($action=="all") {
 	$id=date('Y-').$week;
 
 	
-	//已改
+	//还是有问题
 	$sql="
 	select 
 	concat(substr(id,6),'-',incr_id) `id`,
-	case when `status`<>1 and substr(id, 6)=$week then 'open' 
-		 when `status`<>1 and substr(id, 6)<$week then 'going' 
-		 when `status`=1 and substr(id, 6)=$week then 'close' end st,
+	case when `status`=0 and substr(id, 6)=$week then 'open' 
+		 when `status`=0 and substr(id, 6)<$week then 'going'  
+		 when `status`=1 and date_format(closetime,'%v')=$week then 'close'
+		 when `status`=1 and date_format(closetime,'%v')>$week then 'going'
+		 when `status`=1 and date_format(closetime,'%v')>$week and substr(id, 6)>$week then null
+		 end st,
 	`name`,
 	`deadline`,
 	`content`,
