@@ -68,7 +68,7 @@ $(document).ready(function(){
 				if (data!="error"){
 					var div_log=
 					"<div id='logout'>"+
-					"    <form action='source/login.php' method='post' id='logout_form' class='form-inline'>"+
+					"    <form action='source/login.php' method='post' id='logout_form' class='form-inline text-right'>"+
 					"        <div class='form-group'>"+
 					"            <label class='control-label'>用户名：</label>"+
 					"            <p class='form-control-static'> "+data+" </p>"+
@@ -140,7 +140,7 @@ $(document).ready(function(){
 		ajaxSubmit(this,function(data){
 			var div_log=
 			"<div id='login'>"+
-			"    <form action='source/login.php' method='post' id='login_form' class='form-inline'>"+
+			"    <form action='source/login.php' method='post' id='login_form' class='form-inline text-right'>"+
 			"        <div class='form-group'>"+
 			"            <label for='usrname' class='sr-only'>用户名</label>"+
 			"            <input type='text' name='usrname' id='usrname' class='form-control input-sm' placeholder='用户名'>"+

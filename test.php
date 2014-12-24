@@ -44,10 +44,10 @@
         <table class='table'>
           <thead>
             <tr>
-              <th>aaaaaaa</th>
-              <th>bbbbbbb</th>
-              <th>ccccccc</th>
-              <th>ddddddd</th>
+              <th><?php echo date('Y-W',strtotime('2014-12-31'));?></th>
+              <th><?php echo date('Y-W',strtotime('2014-01-01'));?></th>
+              <th><?php echo date('z',strtotime('2014-12-27'));?></th>
+              <th><?php echo date('z',strtotime('2014-01-01'));?></th>
               <th>eeeeeee</th>
             </tr>
           </thead>

@@ -5,24 +5,24 @@ error_reporting(7);
 ?>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <!-- <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />        
         <title>工作计划 V0.1</title>
-        <!-- [if lt IE 9]
-            <script src="js/html5shiv.js"></script>
-            <script src="js/respond.js"></script>
-        ![end if] -->
+        
         <!-- Bootstrap -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+        <!-- [if lt IE 9]>
+            <script type='text/javascript' src="js/html5shiv.js"></script>
+            <script type='text/javascript' src="js/respond.js"></script>
+        <![end if] -->
         <!-- Javascript -->
-        <script src="js/jquery-1.11.2.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>        
-        <script src="js/bootstrap-datetimepicker.min.js"></script>
-        <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
-        <script src="js/modal.js"></script>
-        <script src="js/ajax.js"></script>
+        <script type='text/javascript' src="js/jquery-1.11.2.min.js"></script>
+        <script type='text/javascript' src="js/bootstrap.min.js"></script>        
+        <script type='text/javascript' src="js/bootstrap-datetimepicker.min.js"></script>
+        <script type='text/javascript' src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+        <script type='text/javascript' src="js/modal.js"></script>
+        <script type='text/javascript' src="js/ajax.js"></script>
 
     </head>
     <body>
@@ -37,7 +37,7 @@ error_reporting(7);
                             if(!isset($_SESSION['usrname'])){
                         ?>
                         <div id="login">
-                            <form action='source/login.php' method='post' id='login_form' class='form-inline'>
+                            <form action='source/login.php' method='post' id='login_form' class='form-inline text-right'>
                                 <div class="input-group">
                                     <label for="usrname" class='sr-only'>用户名</label>
                                     <input type='text' name='usrname' id='usrname' class='form-control input-sm' placeholder='用户名'>
@@ -55,7 +55,7 @@ error_reporting(7);
                             }else{
                         ?>
                         <div id="logout">
-                            <form action='source/login.php' method='post' id='logout_form' class='form-inline'>
+                            <form action='source/login.php' method='post' id='logout_form' class='form-inline text-right'>
                                 <div class="form-group">
                                     <label class='control-label'>用户名：</label>
                                     <p class='form-control-static'> <?php echo $_SESSION['usrname']?> </p>
