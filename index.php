@@ -152,12 +152,8 @@ error_reporting(7);
               </div>
               <div class="modal-body">
                   <div class="row">
-                    <div class="col-md-4">完成状态：</div>
-                    <div class="col-md-8" id="status">未完成</div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-4">内容：</div>
-                    <div class="col-md-8" id="content">xxxxxxxxxxxxxxxxxxxx</div>
+                    <div class="col-md-2">详细：</div>
+                    <div class="col-md-10" id="content">xxxxxxxxxxxxxxxxxxxx</div>
                   </div>
               </div>
               <div class="modal-footer">

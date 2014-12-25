@@ -8,6 +8,7 @@ db_connect();
 
 if ($action=="all") {
 
+	//for pages
 	if (isset($_GET['e'])) {
 		$week=$_GET['e'];
 	}else{
@@ -19,13 +20,11 @@ if ($action=="all") {
 	//还是有问题
 	$sql="
 	select 
-	concat(substr(id,6),'-',incr_id) `id`,
-	case when `status`=0 and substr(id, 6)=$week then 'open' 
-		 when `status`=0 and substr(id, 6)<$week then 'going'  
-		 when `status`=1 and date_format(closetime,'%v')=$week then 'close'
-		 when `status`=1 and date_format(closetime,'%v')>$week then 'going'
-		 when `status`=1 and date_format(closetime,'%v')>$week and substr(id, 6)>$week then null
-		 end st,
+	concat(date_format(createtime,'%u'),'-',incr_id) `id`,
+	case when yearweek(createtime)=yearweek(curdate()) and yearweek(closetime)>yearweek(curdate()) then 'open'
+		 when yearweek(createtime)<yearweek(curdate()) and yearweek(closetime)>yearweek(curdate()) then 'going'
+		 when yearweek(createtime)<yearweek(curdate()) and yearweek(closetime)=yearweek(curdate()) then 'close'
+	end st, 
 	`name`,
 	`deadline`,
 	`content`,
@@ -33,11 +32,28 @@ if ($action=="all") {
 	e_id
 	from pro2_work_plan_entries
 	having st is not null
+	order by e_id
 	";
 
 	if (isset($_SESSION['usrname'])) {
 		$name=$_SESSION['usrname'];
-		$sql=$sql."and respons='$name'";
+		$sql="
+			select 
+			concat(date_format(createtime,'%u'),'-',incr_id) `id`,
+			case when yearweek(createtime)=yearweek(curdate()) and yearweek(closetime)>yearweek(curdate()) then 'open'
+				 when yearweek(createtime)<yearweek(curdate()) and yearweek(closetime)>yearweek(curdate()) then 'going'
+				 when yearweek(createtime)<yearweek(curdate()) and yearweek(closetime)<=yearweek(curdate()) then 'close'
+			end st, 
+			`name`,
+			`deadline`,
+			`content`,
+			`respons`,
+			e_id
+			from pro2_work_plan_entries
+			where respons='$name'
+			having st is not null
+			order by e_id
+			";
 	} 
 
 	$ret=mysql_query($sql);
@@ -96,13 +112,13 @@ if ($action=="all") {
 
 	echo "</table>";
 
-	echo '<nav>';
-	echo '  <ul class="pager">';
-	echo '    <li class="previous"><a class="nav-self" href="source/list.php?action=all&e='.($week==1?54:$week-1).'">&larr; '.($week==1?54:$week-1).'周</a></li>';
-	echo '	  <li>第'.$week.'周</li>';
-	echo '    <li class="next"><a class="nav-self" href="source/list.php?action=all&e='.($week==54?1:$week+1).'">'.($week==54?1:$week+1).'周 &rarr;</a></li>';
-	echo '  </ul>';
-	echo '</nav>';
+	// echo '<nav>';
+	// echo '  <ul class="pager">';
+	// echo '    <li class="previous"><a class="nav-self" href="source/list.php?action=all&e='.($week==1?54:$week-1).'">&larr; '.($week==1?54:$week-1).'周</a></li>';
+	// echo '	  <li>第'.$week.'周</li>';
+	// echo '    <li class="next"><a class="nav-self" href="source/list.php?action=all&e='.($week==54?1:$week+1).'">'.($week==54?1:$week+1).'周 &rarr;</a></li>';
+	// echo '  </ul>';
+	// echo '</nav>';
 	// echo $id;
 }elseif ($action=='item') {
 	$e=$_GET['e'];

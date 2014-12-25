@@ -163,7 +163,7 @@ $(document).ready(function(){
 		return false;
 	});
 	
-	//添加条目按钮绑定
+	//绑定添加条目按钮
 	$(document).on('submit','#add_form',function(){
 		var e_name = $('#ename').val();
 		var e_date = $('#ebdate').val();
@@ -200,6 +200,7 @@ $(document).ready(function(){
 				$('#status').html("未完成");
 				$('#confirm').show();
 			}
+			
 			
 			$('#content').html(o.content);
 			$('.info').val(o.e_id);
