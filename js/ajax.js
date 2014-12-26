@@ -81,7 +81,20 @@ $(document).ready(function(){
 
 					var div_add=
 					"<div class='col-md-4' id='add_f'>"+
-					"        <form action='source/add_entry.php' method='post' id='add_form' class='form-horizontal'>"+
+					'<div class="row">'+
+					'    <div class="col-sm-12" data-toggle="collapse" data-target="#add_form">'+
+					'        <label for="#" data-toggle="collapse" data-target="#add_form">'+
+					'            新建计划'+
+					'            <button type="button" class="close"><span class="glyphicon glyphicon-search"></span></button>'+
+					'        </label>'+
+					'    </div>'+
+					'</div>'+
+					'<div class="row">'+
+					'    <div class="col-md-12">'+
+					'        <hr>'+
+					'    </div>'+
+					'</div>'+
+					"        <form action='source/add_entry.php' method='post' id='add_form' class='form-horizontal collapse'>"+
 					"            <div class='form-group'>"+
 					"                <label for='ename' class='col-sm-3 control-label'>标题：</label>"+
 					"                <div class='col-sm-9'>"+

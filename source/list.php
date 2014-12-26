@@ -60,19 +60,19 @@ if ($action=="all") {
 
 	echo "<table class='table table-hover'>";
 	echo 	"<tr>";
-	echo 		"<th>";
+	echo 		"<th class='hidden-xs'>";
 	echo 		"排序";
 	echo 		"</th>";
-	echo 		"<th>";
+	echo 		"<th class='hidden-xs'>";
 	echo 		"状态";
 	echo 		"</th>";
-	echo 		"<th>";
+	echo 		"<th class='hidden-xs'>";
 	echo 		"完成标识";
 	echo 		"</th>";
 	echo 		"<th>";
 	echo 		"描述";
 	echo 		"</th>";
-	echo 		"<th>";
+	echo 		"<th class='hidden-xs'>";
 	echo 		"责任人";
 	echo 		"</th>";
 	echo 		"<th>";
@@ -89,23 +89,23 @@ if ($action=="all") {
 			echo "<tr>";
 		}
 		
-		echo "<td>";
+		echo "<td class='hidden-xs'>";
 		echo $row['id'];
 		echo "</td>";
-		echo "<td>";	
+		echo "<td class='hidden-xs'>";	
 		echo $row['st'];
 		echo "</td>";
-		echo "<td>";
+		echo "<td class='hidden-xs'>";
 		echo $row['deadline'];
 		echo "</td>";
 		echo "<td>";
 		echo $row['name'];
 		echo "</td>";
-		echo "<td>";
+		echo "<td class='hidden-xs'>";
 		echo $row['respons'];
 		echo "</td>";
 		echo "<td>";
-		echo "<a href='source/list.php?action=item&e=".$row['e_id']."' id='entry'>查看</a>";
+		echo "<a href='source/list.php?action=item&e=".$row['e_id']."' id='entry'>查看</a> | <a>追加</a";
 		echo "</td>";
 		echo "</tr>";
 	}

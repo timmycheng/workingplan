@@ -38,7 +38,7 @@ error_reporting(7);
                         ?>
                         <div id="login">
                             <form action='source/login.php' method='post' id='login_form' class='form-inline text-right'>
-                                <div class="input-group">
+                                <div class="form-group">
                                     <label for="usrname" class='sr-only'>用户名</label>
                                     <input type='text' name='usrname' id='usrname' class='form-control input-sm' placeholder='用户名'>
                                 </div>
@@ -82,31 +82,44 @@ error_reporting(7);
                     if (isset($_SESSION['usrname'])) {
                     ?>
                     <div class="col-md-4" id='add_f'>
-                            <form action='source/add_entry.php' method='post' id='add_form' class='form-horizontal'>
-                                <div class="form-group">
-                                    <label for="ename" class='col-sm-3 control-label'>标题：</label>
-                                    <div class="col-sm-9">
-                                        <input type='text' name='ename' id='ename' class='form-control'>
-                                    </div>
+                        <div class="row">
+                            <div class="col-sm-12" data-toggle="collapse" data-target="#add_form">
+                                <label for="#" data-toggle="collapse" data-target="#add_form">
+                                    新建计划
+                                    <button type="button" class="close"><span class="glyphicon glyphicon-search"></span></button>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <hr>
+                            </div>
+                        </div>
+                        <form action='source/add_entry.php' method='post' id='add_form' class='form-horizontal collapse'>
+                            <div class="form-group">
+                                <label for="ename" class='col-sm-3 control-label'>标题：</label>
+                                <div class="col-sm-9">
+                                    <input type='text' name='ename' id='ename' class='form-control'>
                                 </div>
-                                <div class="form-group">
-                                    <label for="ebdate" class='col-sm-3 control-label'>完成标识：</label>
-                                    <div class="col-sm-9">
-                                        <input type='text' name='ebdate' id='ebdate' class='form-control'>
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="ebdate" class='col-sm-3 control-label'>完成标识：</label>
+                                <div class="col-sm-9">
+                                    <input type='date' name='ebdate' id='ebdate' class='form-control'>
                                 </div>
-                                <div class="form-group">
-                                    <label for="econtent" class='col-sm-3 control-label'>内容：</label>
-                                    <div class="col-sm-9">
-                                        <textarea name='econtent' id='econtent' rows='5' class='form-control'></textarea>
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="econtent" class='col-sm-3 control-label'>内容：</label>
+                                <div class="col-sm-9">
+                                    <textarea name='econtent' id='econtent' rows='5' class='form-control'></textarea>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-sm-offset-10 col-sm-2">
-                                        <input type='submit' class='btn btn-primary btn-sm' value='保存'>
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-10 col-sm-2">
+                                    <input type='submit' class='btn btn-primary btn-sm' value='保存'>
                                 </div>
-                            </form>
+                            </div>
+                        </form>
                     </div>
                     
                     <?php
