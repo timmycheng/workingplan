@@ -25,7 +25,7 @@ $count=$num_arr['incr_id']+1;
 
 $sql="insert into pro2_work_plan_entries values ('$id','$name',0,'$content','$dat','$date','3000-12-31','$respons',$count,null)";
 echo $sql;
-$ret=mysql_query($sql);
+$ret=mysql_query($sql) ;
 
 ;
 

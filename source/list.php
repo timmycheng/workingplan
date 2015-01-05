@@ -75,7 +75,7 @@ if ($action=="all") {
 	echo 		"<th class='hidden-xs'>";
 	echo 		"责任人";
 	echo 		"</th>";
-	echo 		"<th>";
+	echo 		"<th class='hidden-xs'>";
 	echo 		"操作";
 	echo 		"</th>";
 	echo 	"</tr>";
@@ -99,13 +99,13 @@ if ($action=="all") {
 		echo $row['deadline'];
 		echo "</td>";
 		echo "<td>";
-		echo $row['name'];
+		echo "<a href='source/list.php?action=item&e=".$row['e_id']."' id='entry'>".$row['name']."</a>";
 		echo "</td>";
 		echo "<td class='hidden-xs'>";
 		echo $row['respons'];
 		echo "</td>";
-		echo "<td>";
-		echo "<a href='source/list.php?action=item&e=".$row['e_id']."' id='entry'>查看</a> | <a>追加</a";
+		echo "<td class='hidden-xs'>";
+		echo "<a href='source/list.php?action=item&e=".$row['e_id']."' id='entry'>追加</a>";
 		echo "</td>";
 		echo "</tr>";
 	}
