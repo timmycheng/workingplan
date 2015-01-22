@@ -56,16 +56,19 @@
             <td>b</td>
             <td>c</td>
             <td>d</td>
-            <td><a href="#one" data-toggle='collapse' data-target='#content'>e</a></td>
-          </tr>
-              <div class="collapse" id="content">
-          <tr>
-            <td colspan="5">
-                <textarea name="test" id="test" cols="30" rows="10"></textarea>
-                <button onclick="alert($('#test').html());">test</button>
+            <td>
+              <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo" aria-expanded="true" aria-controls="demo">
+                simple collapsible
+              </button>
             </td>
           </tr>
-              </div>
+          <div class="collapse in" id="demo">
+            <tr>
+                <td colspan="5">
+                    <p>sfsdafasdf asdf adf adfadfaf adsfadsfadf asdf </p>
+                </td>
+            </tr>
+          </div>
           <tr>
             <td>a</td>
             <td>b</td>

@@ -1,7 +1,7 @@
 ﻿<?php 
 session_start();
 // include 'source/index_com.php';
-error_reporting(7);
+// error_reporting(7);
 ?>
 <html>
     <head>
@@ -12,16 +12,18 @@ error_reporting(7);
         <!-- Bootstrap -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
-        <!-- [if lt IE 9]>
-            <script type='text/javascript' src="js/html5shiv.js"></script>
-            <script type='text/javascript' src="js/respond.js"></script>
-        <![end if] -->
+        
         <!-- Javascript -->
         <script type='text/javascript' src="js/jquery-1.11.2.min.js"></script>
         <script type='text/javascript' src="js/bootstrap.min.js"></script>        
         <script type='text/javascript' src="js/bootstrap-datetimepicker.min.js"></script>
         <script type='text/javascript' src="js/bootstrap-datetimepicker.zh-CN.js"></script>
-        <script type='text/javascript' src="js/modal.js"></script>
+        
+        <!-- [if lt IE 9]>
+            <script type='text/javascript' src="js/html5shiv.js"></script>
+            <script type='text/javascript' src="js/respond.js"></script>
+        <![end if] -->
+
         <script type='text/javascript' src="js/ajax.js"></script>
 
     </head>
